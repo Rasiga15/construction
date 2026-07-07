@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #f5b301;
+  color: #0c2c48;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #eef3f8;
+}
+::-webkit-scrollbar-thumb {
+  background: #2c5f8e;
+  border-radius: 8px;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display uppercase tracking-wide;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.25em] text-rebar-600;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm bg-rebar-500 px-7 py-3.5 font-display text-sm uppercase tracking-wider text-steel-900 shadow-[0_6px_0_0_#D69600] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_0_0_#D69600] active:translate-y-0.5 active:shadow-[0_2px_0_0_#D69600];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border-2 border-steel-100/70 px-7 py-3 font-display text-sm uppercase tracking-wider text-steel-50 transition-all duration-200 hover:border-rebar-500 hover:text-rebar-400;
+  }
+
+  .btn-outline-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm border-2 border-steel-700 px-7 py-3 font-display text-sm uppercase tracking-wider text-steel-700 transition-all duration-200 hover:border-steel-800 hover:bg-steel-800 hover:text-white;
+  }
+
+  /* Rebar divider — signature motif referencing the twisted-steel rod */
+  .rebar-divider {
+    @apply relative h-[6px] w-full overflow-hidden rounded-full bg-rebar-gradient bg-[length:200%_100%];
+  }
+
+  .blueprint-bg {
+    @apply bg-blueprint bg-steel-900;
+  }
+}
+
+/* Scroll reveal utility, toggled via IntersectionObserver hook */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-zoom {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal-zoom.reveal-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-zoom {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}

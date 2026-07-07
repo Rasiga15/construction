@@ -1,0 +1,13 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
+/** Resets scroll position whenever the route changes (MPA-style navigation). */
+export default function ScrollToTopOnRoute() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }, [pathname]);
+
+  return null;
+}
